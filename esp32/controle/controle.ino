@@ -10,26 +10,36 @@ WebServer server(80);
 
 bool status_arma = false;
 
+String status_movimento = "NEUTRO";
+String status_velocidade = "VMEDIA";
+
 void receberComando() {
   if (server.hasArg("acao")) {
     String comando = server.arg("acao");
 
     if (comando == "FRENTE") {
       Serial.println("Comando recebido: FRENTE");
+      status_movimento = "FRENTE";
     }
     else if (comando == "TRAS") {
       Serial.println("Comando recebido: TRAS");
+      status_movimento = "TRAS";
     }
     else if (comando == "ESQUERDA") {
       Serial.println("Comando recebido: ESQUERDA");
+      status_movimento = "ESQUERDA";
     }
     else if (comando == "DIREITA") {
       Serial.println("Comando recebido: DIREITA");
+      status_movimento = "DIREITA";
+    } else if (comando == "NEUTRO") {
+      Serial.println("Comando recebido: NEUTRO");
+      status_movimento = "NEUTRO";
     }
     else if (comando == "ARMA") {
       if (status_arma) {
         status_arma = false;
-        Serial.println("Status Arma: DESLIGADA")
+        Serial.println("Status Arma: DESLIGADA");
       } else {
         status_arma = true;
         Serial.println("Status Arma: LIGADA");
@@ -37,12 +47,15 @@ void receberComando() {
     } 
     else if (comando == "VRAPIDA") {
       Serial.println("Status Velocidade: RAPIDA");
+      status_velocidade = "VRAPIDA";
     }
     else if (comando == "VMEDIA") {
       Serial.println("Status Velocidade: MEDIA");
+      status_velocidade = "VMEDIA";
     }
     else if (comando == "VLENTA") {
       Serial.println("Status Velocidade: LENTA");
+      status_velocidade = "VLENTA";
     }
     else {
       Serial.println("Comando desconhecido: " + comando);
@@ -55,7 +68,7 @@ void receberComando() {
 }
 
 void setup() {
-  Serial.begin(115200);
+  Serial.begin(9600);
 
   WiFi.begin(ssid, password);
   Serial.print("Conectando ao WiFi");
@@ -77,4 +90,7 @@ void setup() {
 
 void loop() {
   server.handleClient();
+
+  // lidar com o movimento
+
 }
