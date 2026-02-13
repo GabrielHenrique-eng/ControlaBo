@@ -18,6 +18,8 @@ Esquerda → Gira o robô para a esquerda.
 
 Direita → Gira o robô para a direita.
 
+Neutro → Interrompe a movimentação do robô.
+
 Cada botão envia um comando via rede para o ESP32, que interpreta e executa a ação correspondente.
 
 ## ⚙️ Controle da Arma
