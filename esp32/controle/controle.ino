@@ -29,7 +29,7 @@ void receberComando() {
     else if (comando == "ARMA") {
       if (status_arma) {
         status_arma = false;
-        Serial.println("Status Arma: DESLIGADA")
+        Serial.println("Status Arma: DESLIGADA");
       } else {
         status_arma = true;
         Serial.println("Status Arma: LIGADA");
